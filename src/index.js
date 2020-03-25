@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import App from './App';
+import Loading from 'components/Loading/Loading'
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
+
+const Home = lazy(() => import('components/Home/Home'))
+const Pokemons = lazy(() => import('containers/Pokemons/Pokemons'))
+const Pokemon = lazy(() => import('containers/Pokemon/Pokemon'))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App>
+        <Suspense fallback={ <Loading /> }>
+          <Switch>
+            <Route path="/" component={ Home } exact />
+            <Route path="/pokemons" component={ Pokemons } />
+            <Route path="/pokemon/:name" component={ Pokemon } />
+          </Switch>
+        </Suspense>
+      </App>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
