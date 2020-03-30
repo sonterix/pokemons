@@ -1,0 +1,12 @@
+@import '../../assets/scss/variables';
+
+.Footer {
+  margin-top: 30px;
+  padding: 30px;
+  background-color: $color-darkgrey;
+
+  .FooterWrapper {
+    text-align: center;
+    color: $color-white;
+  }
+}

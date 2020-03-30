@@ -1,0 +1,156 @@
+@import '../../../assets/scss/variables';
+
+.PokedexDisplay {
+  position: relative;
+  margin: 10px 30px;
+  padding: 0 30px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  background-color: $color-lightgrey;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  overflow: hidden;
+
+  .DisplayLights {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    margin: 0 auto;
+
+    > span {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin: 5px 8px;
+      background-color: $color-red;
+      border-radius: 50%;
+    }
+  }
+
+  .PokedexInfo {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 5px;
+    min-height: 150px;
+    color: $color-white;
+    background-color: $color-black;
+    border: 3px solid $color-black;
+    border-radius: 8px;
+
+    .TypeInfo {
+      flex: 1;
+      flex-basis: 50%;
+      text-align: center;
+
+      > h3 {
+        margin: 0;
+        margin-bottom: 15px;
+        font-size: $font-md;
+        letter-spacing: 1px;
+      }
+
+      > span {
+        display: block;
+        padding-bottom: 3px;
+        font-size: $font-sm + 2;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    .AbilitiesInfo {
+      flex: 1;
+      flex-basis: 50%;
+      text-align: center;
+
+      > h3 {
+        margin: 0;
+        margin-bottom: 15px;
+        font-size: $font-md;
+        letter-spacing: 1px;
+      }
+
+      > span {
+        display: block;
+        padding-bottom: 3px;
+        font-size: $font-sm + 2;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .PokedexImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    background-color: $color-black;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 3px solid $color-black;
+    border-radius: 8px;
+
+    > img {
+      max-width: 96px;
+      max-height: 96px;
+      pointer-events: none;
+    }
+  }
+
+  .DisplayIndicator {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background-color: $color-red;
+    border-radius: 50%;
+    transition: background-color $trans-sm;
+
+    &:hover { 
+      background-color: $color-red + 30;
+    }
+  }
+
+  .DisplayDynamic {
+    position: absolute;
+    bottom: 12px;
+    right: 30px;
+
+    > span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      margin-bottom: 2px;
+      background-color: $color-black;
+      border-radius: 1px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    bottom: -25px;
+    width: 50px;
+    height: 50px;
+    background-color: $color-red;
+    transform: rotate(45deg);
+  }
+}

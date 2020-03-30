@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables';
+
+.Hero {
+  height: 100vh;
+  background-color: $color-lightblue;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .HeroWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .HeroLogo {
+    margin-bottom: 50px;
+    padding: 0 15px;
+    padding-top: 30px ;
+    height: 210px;
+    text-align: center;
+  }
+}

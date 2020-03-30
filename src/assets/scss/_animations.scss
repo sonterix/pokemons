@@ -1,0 +1,111 @@
+@import './variables';
+
+// Hamburger menu
+@keyframes hamburgerTopLineForward {
+  0% {
+    top: 30%;
+  }
+  50% {
+    top: 50%;
+    transform: translateY(-50%) rotate(0);
+  }
+  100% {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+@keyframes hamburgerTopLineBackward {
+  0% {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  50% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  100% {
+    top: 30%;
+  }
+}
+
+@keyframes hamburgerMiddleLineForward {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+}
+
+@keyframes hamburgerMiddleLineBackward {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  50%, 100% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+@keyframes hamburgerBottomLineForward {
+  0% {
+    bottom: 30%;
+  }
+  50% {
+    bottom: 50%;
+    transform: translateY(50%) rotate(0);
+  }
+  100% {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+}
+
+@keyframes hamburgerBottomLineBackward {
+  0% {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+  50% {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  100% {
+    bottom: 30%;
+  }
+}
+
+// Header
+@keyframes logoForward {
+  0% {
+    background-color: $color-white;
+    transform: translateX(0) rotate(0);
+  }
+  40% {
+    background-color: $color-red;
+    transform: translateX(0) rotate(0);
+  }
+  100% {
+    background-color: $color-red;
+    transform: translateX(-70px) rotate(90deg);
+  }
+}
+
+@keyframes logoBackward {
+  0% {
+    background-color: $color-red;
+    transform: translateX(-70px) rotate(90deg);
+  }
+  40% {
+    background-color: $color-red;
+    transform: translateX(0) rotate(0);
+  }
+  100% {
+    background-color: $color-white;
+    transform: translateX(0) rotate(0);
+  }
+}

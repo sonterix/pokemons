@@ -1,0 +1,10 @@
+@import '../../../assets/scss/variables';
+
+.Pokedex {
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+  background-color: $color-red;
+  border-radius: 10px;
+  overflow: hidden;
+}

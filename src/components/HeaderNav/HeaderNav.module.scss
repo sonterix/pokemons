@@ -1,0 +1,51 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/animations';
+
+nav.Nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 50px;
+  height: 100%;
+  background-color: $color-darkgrey;
+  transform: translateX(-100%);
+  transform-origin: left;
+  transition: transform $trans-lg cubic-bezier(0.6, 0, 0.25, 1);
+  z-index: 900;
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    padding-right: 40px;
+    list-style: none;
+    opacity: 0;
+    transition: opacity $trans-sm ease-out;
+
+    > li {
+      
+      > a {
+        display: block;
+        position: relative;
+        padding: 15px;
+        text-transform: uppercase;
+        font-size: $font-lg - 4;
+        font-weight: 300;
+        letter-spacing: 2px;
+        color: $color-white;
+        transition: color $trans-sm;
+
+        &:hover {
+          color: $color-red
+        }
+      }
+    }
+  }
+
+  &.Active {
+    transform: translateX(0);
+
+    > ul {
+      opacity: 1;
+    }
+  }
+}

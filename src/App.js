@@ -1,15 +1,51 @@
-import React from 'react';
-import Header from 'components/Header/Header'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
+import Header from 'containers/Header/Header'
 import Footer from 'components/Footer/Footer'
 
-const App = ({ children }) => {
-  return (
-    <>
-      <Header />
-      { children }
-      <Footer />
-    </>
-  );
+class App extends Component {
+
+  state = {
+    homePage: false
+  }
+
+  handleHomePageCheck = () => {
+    const { location: { pathname } } = this.props
+    const { homePage } = this.state
+
+    if (pathname === '/' && homePage) {
+      this.setState({
+        homePage: false
+      })
+    } else if (pathname !== '/' && !homePage) {
+      this.setState({
+        homePage: true
+      })
+    }
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.handleHomePageCheck()
+    }, 1000);
+  }
+
+  componentDidUpdate = () => {
+    this.handleHomePageCheck()
+  }
+
+  render () {
+    const { children } = this.props
+    const { homePage } = this.state
+    
+    return (
+      <>
+        { homePage && <Header /> }
+        { children }
+        { homePage && <Footer /> }
+      </>
+    )
+  }
 }
 
-export default App;
+export default withRouter(App);

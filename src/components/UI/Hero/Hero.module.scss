@@ -1,0 +1,12 @@
+@import '../../../assets/scss/variables';
+
+.Hero {
+  margin-bottom: 30px;
+  min-height: 400px;
+  background-position: center bottom;
+  background-size: contain;
+
+  @media (max-width: $lg) {
+    background-size: cover;
+  }
+}

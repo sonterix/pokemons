@@ -1,0 +1,87 @@
+@import '../../../assets/scss/variables';
+
+.Pokeball {
+  position: relative;
+  margin: 40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+  
+  .PokeballTop {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .PokeballMiddle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 16px;
+    background-color: $color-grey;
+    transition: all 0.3s ease;
+    z-index: 3;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background-color: $color-white;
+      border: 16px solid $color-grey;
+      border-radius: 50%;
+    }
+  }
+  
+  .PokeballBottom {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-color: $color-white;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .PokeballText {
+    position: absolute;
+    top: calc(50% - 10px);
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    z-index: 1;
+  }
+  
+  &:hover {
+    transform: rotate(360deg);
+
+    .PokeballTop {
+      transition-delay: 0.4s;
+      transform: translateY(-40px);
+    }
+    
+    .PokeballMiddle,
+    .PokeballBottom {
+      transition-delay: 0.4s;
+      transform: translateY(40px);
+    }
+    
+    .PokeballText {
+      opacity: 1;
+    }
+  }
+}

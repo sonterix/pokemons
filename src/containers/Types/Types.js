@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Pokemon extends Component {
+export default class Types extends Component {
   render() {
     return (
       <div>
-        Pokemon page
+        Types page
       </div>
     )
   }
