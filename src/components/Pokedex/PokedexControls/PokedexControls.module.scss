@@ -21,7 +21,7 @@
       background-color: $color-green;
       border: none;
       border-radius: 10px;
-      box-shadow: 0 2px 0 0 $color-green - 50;
+      box-shadow: 0 2px 0 0 darken($color-green, 20);
       transition: all $trans-sm;
 
       &:hover {
@@ -30,7 +30,7 @@
       
       &:active {
         transform: translateY(2px);
-        box-shadow: 0 0 0 0 $color-white - 50;
+        box-shadow: 0 0 0 0 darken($color-white, 20);
       }
     }
   
@@ -46,17 +46,17 @@
       background-color: $color-white;
       border: none;
       border-radius: 15px;
-      box-shadow: 0 3px 0 0 $color-white - 50;
+      box-shadow: 0 3px 0 0 darken($color-white, 20);
       transition: all $trans-sm;
       cursor: pointer;
   
       &:hover {
-        background-color: $color-white - 10;
+        background-color: darken($color-white, 5);
       }
 
       &:active {
         transform: translateY(3px);
-        box-shadow: 0 0 0 0 $color-white - 80;
+        box-shadow: 0 0 0 0 darken($color-white, 25);
       }
     }
   }

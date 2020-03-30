@@ -16,7 +16,7 @@
   transition: background-color $trans-sm;
 
   &:hover {
-    background-color: darken($color-red, 30);
+    background-color: darken($color-red, 10);
   }
 
   @media (min-width: $md) {
