@@ -2,9 +2,23 @@
 
 .Hero {
   margin-bottom: 30px;
-  min-height: 400px;
+  height: 400px;
   background-position: center bottom;
   background-size: contain;
+
+  .HeroText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 400px;
+    font-size: $font-xlg;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: $color-white;
+    text-shadow: 3px 3px 0 $color-grey;
+    cursor: default;
+  }
 
   @media (max-width: $lg) {
     background-size: cover;

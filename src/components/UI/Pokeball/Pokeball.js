@@ -21,7 +21,7 @@ Pokeball.propTypes = {
 }
 
 Pokeball.defaultProps = {
-  link: '/',
+  link: '#',
   text: 'Click',
   color: '#f04822'
 }

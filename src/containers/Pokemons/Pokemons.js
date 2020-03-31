@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { API } from 'constants.js'
 import Pokedex from './Pokedex/Pokedex'
 import Hero from 'components/UI/Hero/Hero'
+import Loading from 'components/Loading/Loading'
+import Pagination from 'components/UI/Pagination/Pagination'
 import pokemonBg1 from 'assets/images/pokemon-bg-1.png'
 import pokemonBg2 from 'assets/images/pokemon-bg-2.png'
 import pokemonBg3 from 'assets/images/pokemon-bg-3.png'
@@ -13,13 +15,40 @@ export default class Heroes extends Component {
   state = {
     nextPage: null,
     prevPage: null,
-    pokemons: []
+    pokemons: [],
+    loading: true,
+    scrollToTop: false
   }
 
-  handleGetPokemons = () => {
+  handleLoadPokemons = () => {
     const { link, pokemon } = API
+    this.handleGetPokemons(`${ link }${ pokemon }`)
+  }
 
-    this.handleGetPokemon(`${ link }${ pokemon }`)
+  handleLoadPrevPokemons = () => {
+    const { prevPage } = this.state
+
+    this.setState({
+      loading: true
+    })
+    
+    this.handleScrollToTop()
+    this.handleGetPokemons(prevPage)
+  }
+
+  handleLoadNextPokemons = () => {
+    const { nextPage } = this.state
+
+    this.setState({
+      loading: true
+    })
+    
+    this.handleScrollToTop()
+    this.handleGetPokemons(nextPage)
+  }
+
+  handleGetPokemons = link => {
+    this.handleGetPokemon(link)
       .then(data => {
         const { next, previous, results } = data
 
@@ -31,7 +60,8 @@ export default class Heroes extends Component {
           this.setState({
             nextPage: next,
             prevPage: previous,
-            pokemons: pokemons
+            pokemons: pokemons,
+            loading: false
           })
         })
       })
@@ -45,22 +75,34 @@ export default class Heroes extends Component {
     return response
   }
 
+  handleScrollToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   componentDidMount = () => {
-    this.handleGetPokemons()
+    this.handleLoadPokemons()
   }
 
   render () {
-    const { pokemons } = this.state
+    const { prevPage, nextPage, pokemons, loading } = this.state
     const pokemonBg = [pokemonBg1, pokemonBg2, pokemonBg3]
     
     return (
       <>
-        <Hero backgroundImg={ pokemonImage } />
+        { loading && <Loading /> }
+        <Hero backgroundImg={ pokemonImage } text="Pokemons" />
         <div className="wrapper">
           <div className={ styles.PokemonCards }>
             { pokemons.map(pokemon => <Pokedex key={ pokemon.id } pokemon={ pokemon } bg={ pokemonBg } />) }
           </div>
         </div>
+        <Pagination
+          prev={ prevPage }
+          next={ nextPage }
+          goPrev={ this.handleLoadPrevPokemons }
+          goNext={ this.handleLoadNextPokemons }
+        />
       </>
     )
   }
