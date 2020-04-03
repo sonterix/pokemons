@@ -32,7 +32,6 @@ export default class Heroes extends Component {
       loading: true
     })
     
-    this.handleScrollToTop()
     this.handleGetPokemons(prevPage)
   }
 
@@ -43,7 +42,6 @@ export default class Heroes extends Component {
       loading: true
     })
     
-    this.handleScrollToTop()
     this.handleGetPokemons(nextPage)
   }
 
@@ -73,11 +71,6 @@ export default class Heroes extends Component {
       .catch(error => error)
 
     return response
-  }
-
-  handleScrollToTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
   }
 
   componentDidMount = () => {

@@ -1,0 +1,73 @@
+@import '../../../assets/scss/variables';
+
+.Abilities {
+  padding: 25px;
+  border: 1px solid $color-lightgrey;
+  background-image: url($bg-main-image);
+
+  > h3 {
+    margin: 0;
+    padding-bottom: 25px;
+    color: $color-red;
+    font-size: $font-lg;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .Ability {
+    padding-bottom: 25px;
+
+    > h4 {
+      margin: 0;
+      padding-bottom: 10px;
+      color: $color-grey;
+      font-size: $font-md + 2;
+      font-weight: 600;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+
+    > p {
+      margin: 0;
+      font-size: $font-md - 2;
+    }
+
+    .PokemonWithAbility {
+      padding-top: 10px;
+
+      > span {
+        padding-right: 5px;
+        font-size: $font-sm;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      > a {
+        display: inline-block;
+        padding-right: 5px;
+        color: $color-red;
+        font-size: $font-sm;
+        font-weight: 400;
+        text-transform: capitalize;
+        transition: color $trans-md;
+
+        &:hover {
+          color: darken($color-red, 10)
+        }
+
+        &::after {
+          content: ',';
+        }
+
+        &:last-child::after {
+          content: '';
+        }
+      }
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}

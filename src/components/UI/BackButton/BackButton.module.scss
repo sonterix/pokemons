@@ -1,0 +1,30 @@
+@import '../../../assets/scss/variables';
+
+.BackButton {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 65px;
+  top: 10px;
+  padding: 5px;
+  color: $color-grey;
+  font-size: $font-md - 2;
+  font-weight: 400;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 2px;
+    border: 6px solid transparent;
+    border-top-color: $color-grey;
+    border-left-color: $color-grey;
+    transform: rotate(-45deg);
+    transition: transform $trans-sm;
+  }
+
+  &:hover::before {
+    transform: rotate(-45deg) translateX(-2px) translateY(-2px);
+  }
+}

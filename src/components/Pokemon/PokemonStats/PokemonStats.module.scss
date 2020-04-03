@@ -1,0 +1,33 @@
+@import '../../../assets/scss/variables';
+
+.PokemonStats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 10px;
+  max-width: 80%;
+  background-color: $color-red;
+  border-radius: 10px;
+
+  .PokemonStat {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    flex-basis: 50%;
+    padding: 10px;
+    font-size: $font-sm + 2;
+    font-weight: 600;
+    text-align: center;
+    color: $color-white;
+
+    > span {
+      padding-left: 5px;
+      font-size: $font-md;
+      font-weight: 400;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+  }
+}

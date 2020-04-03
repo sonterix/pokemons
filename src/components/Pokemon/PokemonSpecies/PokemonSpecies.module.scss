@@ -1,0 +1,113 @@
+@import '../../../assets/scss/variables';
+
+@mixin bgAndHover($color) {
+  background-color: $color;
+  border-color: $color;
+  transition: background-color $trans-md, border-color $trans-md;
+
+  &:hover {
+    background-color: darken($color, 5);
+    border-color: darken($color, 5);
+  }
+}
+
+.PokemonDescription {
+  padding-bottom: 25px;
+  font-size: $font-md;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.PokemonLinks {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-bottom: 25px;
+  max-width: 380px;
+
+  .PokemonLink {
+    flex: 1;
+    flex-basis: 50%;
+    padding: 10px 15px;
+    text-align: center;
+
+    > span {
+      display: block;
+      padding-bottom: 5px;
+      font-size: $font-sm;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+    }
+
+    > a {
+      display: inline-block;
+      padding: 5px 10px;
+      color: $color-white;
+      background-color: $color-silver;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-size: $font-sm;
+      font-weight: 600;
+      text-transform: uppercase;
+  
+      &.black,
+      &.urban {
+        @include bgAndHover($color-black);
+      }
+  
+      &.blue,
+      &.rare,
+      &.sea,
+      &.waters-edge {
+        @include bgAndHover($color-blue);
+      }
+  
+      &.brown,
+      &.cave {
+        @include bgAndHover($color-brown);
+      }
+  
+      &.grey,
+      &.mountain {
+        @include bgAndHover($color-grey);
+      }
+  
+      &.green,
+      &.forest,
+      &.grassland {
+        @include bgAndHover($color-green);
+      }
+  
+      &.pink {
+        @include bgAndHover($color-pink);
+      }
+      
+      &.purple {
+        @include bgAndHover($color-purple);
+      }
+  
+      &.red {
+        @include bgAndHover($color-red);
+      }
+  
+      &.white {
+        color: $color-black;
+        @include bgAndHover($color-white);
+        border-color: $color-black;
+
+        &:hover {
+          border-color: $color-black;
+        }
+      }
+  
+      &.yellow,
+      &.rough-terrain {
+        @include bgAndHover($color-yellow);
+      }
+    }
+  }
+}
