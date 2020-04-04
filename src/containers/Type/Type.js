@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { API } from 'constants.js'
-import Loading from 'components/UI/Loading/Loading'
+import Loading from 'containers/Loading/Loading'
 import Hero from 'components/UI/Hero/Hero'
 import Pokedex from 'containers/Pokemons/Pokedex/Pokedex'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
@@ -10,9 +10,10 @@ import styles from './Type.module.scss'
 export default class Type extends Component {
 
   state = {
+    typeName: '',
     pokemonsAll: [],
     pokemonsChunks: [],
-    pokemons: [],
+    pokemonsOnPage: [],
     prevPage: null,
     currentPage: 0,
     nextPage: null,
@@ -37,19 +38,20 @@ export default class Type extends Component {
     try {
       const pokemonsResponse = await fetch(`${ link }${ type }${ typeId }`)
       const pokemonsData = await pokemonsResponse.json()
-      const { pokemon } = pokemonsData
+      const { name: typeName, pokemon } = pokemonsData
       const pokemonsChunks = this.handleDevideToChunks(pokemon)
-      const pokemons = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
+      const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
 
       this.setState({
+        typeName: typeName,
         pokemonsAll: pokemon,
         pokemonsChunks: pokemonsChunks,
-        pokemons: pokemons,
+        pokemonsOnPage: pokemonsOnPage,
         nextPage: pokemonsChunks.length > 0 && 1,
         loading: false
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -63,7 +65,7 @@ export default class Type extends Component {
 
       return pokemonsData
     } catch (error) {
-      console.log(error)
+      console.error(error)
       return []
     }
   }
@@ -81,17 +83,16 @@ export default class Type extends Component {
           const prev = prevPage === 0 ? null : prevPage - 1
           const current = currentPage - 1
           const next = nextPage === null ? pokemonsChunks.length - 1 : nextPage - 1
-          const pokemons = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, current)
+          const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, current)
       
           this.setState({
-            pokemons: pokemons,
+            pokemonsOnPage: pokemonsOnPage,
             prevPage: prev,
             currentPage: current,
             nextPage: next,
             loading: false
           })
         }
-        
         break
 
       case ('next'):
@@ -103,17 +104,16 @@ export default class Type extends Component {
           const prev = prevPage === null ? 0 : prevPage + 1
           const current = currentPage + 1
           const next = pokemonsChunks.length === nextPage ? null : nextPage + 1
-          const pokemons = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, current)
+          const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, current)
       
           this.setState({
-            pokemons: pokemons,
+            pokemonsOnPage: pokemonsOnPage,
             prevPage: prev,
             currentPage: current,
             nextPage: next,
             loading: false
           })
         }
-
         break
         
       default:
@@ -127,18 +127,17 @@ export default class Type extends Component {
   }
 
   render() {
-    const { loading, pokemons, prevPage, nextPage } = this.state
-    const { location: { state: { type } } } = this.props
+    const { typeName, loading, pokemonsOnPage, prevPage, nextPage } = this.state
 
     return (
       <>
       { loading
       ? <Loading />
       : <>
-        <Hero backgroundImg={ pokemonImage } text={ `${ type } Pokemons` } />
+        <Hero backgroundImg={ pokemonImage } text={ `${ typeName } Pokemons` } />
         <div className="wrapper">
           <div className={ styles.TypePokemonCards }>
-            { pokemons.map(pokemon => <Pokedex key={ pokemon.id } pokemon={ pokemon } />) }
+            { pokemonsOnPage.map(pokemon => <Pokedex key={ pokemon.id } pokemon={ pokemon } />) }
           </div>
         </div>
         <Pagination

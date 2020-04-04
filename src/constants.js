@@ -16,6 +16,10 @@ export const API = {
 }
 
 export const getIdFromUrl = url => {
-  const [ pokemonid ] = url.match(/\/[0-9]+\/$/)
-  return pokemonid.replace(/\//g, '') || 0
+  try {
+    const [ pokemonid ] = url.match(/\/[0-9]+\/$/)
+    return pokemonid.replace(/\//g, '') || 0
+  } catch (error) {
+    return 0
+  }
 }

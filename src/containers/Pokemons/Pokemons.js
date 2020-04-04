@@ -2,18 +2,17 @@ import React, { Component } from 'react'
 import { API } from 'constants.js'
 import Pokedex from './Pokedex/Pokedex'
 import Hero from 'components/UI/Hero/Hero'
-import Loading from 'components/UI/Loading/Loading'
 import Pagination from 'components/UI/Pagination/Pagination'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
+import withLoadingAndError from 'hoc/withLoadingAndError'
 import styles from './Pokemons.module.scss'
 
-export default class Pokemons extends Component {
+class Pokemons extends Component {
 
   state = {
     nextPage: null,
     prevPage: null,
     pokemons: [],
-    loading: true,
     scrollToTop: false
   }
 
@@ -22,52 +21,51 @@ export default class Pokemons extends Component {
     this.handleGetPokemons(`${ link }${ pokemon }`)
   }
 
-  handleLoadPrevPokemons = () => {
-    const { prevPage } = this.state
+  handlePagination = action => {
+    const { nextPage, prevPage } = this.state
+    const { showLoading } = this.props
 
-    this.setState({
-      loading: true
-    })
-    
-    this.handleGetPokemons(prevPage)
+    showLoading()
+
+    switch (action) {
+      case ('prev'):
+        this.handleGetPokemons(prevPage)
+        break
+
+      case ('next'):
+        this.handleGetPokemons(nextPage)
+        break
+
+      default: 
+        break
+    }
   }
 
-  handleLoadNextPokemons = () => {
-    const { nextPage } = this.state
+  handleGetPokemons = async link => {
+    const { hideLoading } = this.props
 
-    this.setState({
-      loading: true
-    })
-    
-    this.handleGetPokemons(nextPage)
-  }
+    try {
+      const pokemonNamesResponse = await fetch(`link`)
+      const pokemonNamesData = await pokemonNamesResponse.json()
 
-  handleGetPokemons = link => {
-    this.handleGetPokemon(link)
-      .then(data => {
-        const { next, previous, results } = data
+      const { next, previous, results } = pokemonNamesData
+      const pokemonsResponse = await Promise.all(results.map(result => {
+        const { url } = result
+        return fetch(url)
+      }))
+      const pokemonsData = await Promise.all(pokemonsResponse.map(pokemonResponse => pokemonResponse.json()))
+      
+      this.setState({
+        nextPage: next,
+        prevPage: previous,
+        pokemons: pokemonsData
+      }, hideLoading())
+    } catch (error) {
+      hideLoading()
 
-        Promise.all(results.map(result => {
-          const { url } = result
-          return this.handleGetPokemon(url)
-        }))
-        .then(pokemons => {
-          this.setState({
-            nextPage: next,
-            prevPage: previous,
-            pokemons: pokemons,
-            loading: false
-          })
-        })
-      })
-  }
-
-   handleGetPokemon = url => {
-    const response = fetch(url)
-      .then(response => response.json())
-      .catch(error => error)
-
-    return response
+      const { showError } = this.props
+      showError('Error with getting Pokemons')
+    }
   }
 
   componentDidMount = () => {
@@ -75,11 +73,10 @@ export default class Pokemons extends Component {
   }
 
   render () {
-    const { prevPage, nextPage, pokemons, loading } = this.state
+    const { prevPage, nextPage, pokemons } = this.state
     
     return (
       <>
-        { loading && <Loading /> }
         <Hero backgroundImg={ pokemonImage } text="Pokemons" />
         <div className="wrapper">
           <div className={ styles.PokemonCards }>
@@ -89,10 +86,12 @@ export default class Pokemons extends Component {
         <Pagination
           prev={ prevPage }
           next={ nextPage }
-          goPrev={ this.handleLoadPrevPokemons }
-          goNext={ this.handleLoadNextPokemons }
+          goPrev={ () => this.handlePagination('prev') }
+          goNext={ () => this.handlePagination('next') }
         />
       </>
     )
   }
 }
+
+export default withLoadingAndError(Pokemons)

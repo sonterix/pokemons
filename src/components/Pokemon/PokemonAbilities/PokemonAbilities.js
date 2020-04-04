@@ -21,9 +21,15 @@ const PokemonAbilities = ({ abilities }) => {
               <span>Pokemons with the same ability:</span>
               { pokemon.map((pok, index) => {
                 const { pokemon: { name, url } } = pok
-                return <Link key={ `${ index }_${ name }` } to={{ pathname: `/pokemon/${ name }`, state: {
-                  pokemonId: getIdFromUrl(url)
-                } }}>
+                return <Link
+                  key={ `${ index }_${ name }` }
+                  to={{
+                    pathname: `/pokemon/${ name }`,
+                    state: {
+                      pokemonId: getIdFromUrl(url)
+                    }
+                  }}
+                >
                   { name }
                 </Link>
               }) }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { API, getIdFromUrl } from 'constants.js'
 import Hero from 'components/UI/Hero/Hero'
-import Loading from 'components/UI/Loading/Loading'
+import Loading from 'containers/Loading/Loading'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import typesSprite from 'assets/images/types-sprite.png'
 import styles from './Types.module.scss'
@@ -49,7 +49,6 @@ export default class Types extends Component {
                       pathname: `/type/${ name }`,
                       state: {
                         typeId: getIdFromUrl(url),
-                        type: name
                       }
                     }}
                     className={ styles.Type }

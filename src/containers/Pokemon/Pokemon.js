@@ -5,7 +5,7 @@ import PokemonStats from 'components/Pokemon/PokemonStats/PokemonStats'
 import PokemonAbilities from 'components/Pokemon/PokemonAbilities/PokemonAbilities'
 import PokemonSpecies from 'components/Pokemon/PokemonSpecies/PokemonSpecies'
 import BackButton from 'components/UI/BackButton/BackButton'
-import Loading from 'components/UI/Loading/Loading'
+import Loading from 'containers/Loading/Loading'
 import styles from './Pokemon.module.scss'
 
 export default class Pokemon extends Component {
@@ -46,7 +46,7 @@ export default class Pokemon extends Component {
         loading: false
       })
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 

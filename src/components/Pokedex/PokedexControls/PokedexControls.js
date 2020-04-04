@@ -8,12 +8,15 @@ const PokedexControls = ({ pokemonId, name, switchDisplay, switchImage, switchBa
     <div className={ styles.PokedexControls }>
       <div className={ styles.PokedexButtons }>
         <button className={ styles.PokedexInfo } onClick={ switchDisplay }>Info</button>
-        <Link to={{
-          pathname: `/pokemon/${ name }`,
-          state: {
-            pokemonId: pokemonId
-          }
-        }} className={ styles.PokedexName }>
+        <Link
+          to={{
+            pathname: `/pokemon/${ name }`,
+            state: {
+              pokemonId: pokemonId
+            }
+          }}
+          className={ styles.PokedexName }
+        >
           { name }
         </Link>
       </div>

@@ -24,9 +24,12 @@ const PokemonSpecies = ({ species, types }) => {
         { types.map((type, index) => {
           const { type: { name, url } } = type
           return <Link
-                    to={{ pathname: `/type/${ name }`, state: {
-                      typeId: getIdFromUrl(url)
-                    } }}
+                    to={{
+                      pathname: `/type/${ name }`,
+                      state: {
+                        typeId: getIdFromUrl(url)
+                      }
+                    }}
                     key={ `${ index }_${ name }` }
                     className={ `sprite-type sprite-type-${ name }` }
                     style={{ backgroundImage: `url(${ typesSprite })` }}
