@@ -4,13 +4,10 @@ import Pokedex from './Pokedex/Pokedex'
 import Hero from 'components/UI/Hero/Hero'
 import Loading from 'components/UI/Loading/Loading'
 import Pagination from 'components/UI/Pagination/Pagination'
-import pokemonBg1 from 'assets/images/pokemon-bg-1.png'
-import pokemonBg2 from 'assets/images/pokemon-bg-2.png'
-import pokemonBg3 from 'assets/images/pokemon-bg-3.png'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import styles from './Pokemons.module.scss'
 
-export default class Heroes extends Component {
+export default class Pokemons extends Component {
 
   state = {
     nextPage: null,
@@ -79,7 +76,6 @@ export default class Heroes extends Component {
 
   render () {
     const { prevPage, nextPage, pokemons, loading } = this.state
-    const pokemonBg = [pokemonBg1, pokemonBg2, pokemonBg3]
     
     return (
       <>
@@ -87,7 +83,7 @@ export default class Heroes extends Component {
         <Hero backgroundImg={ pokemonImage } text="Pokemons" />
         <div className="wrapper">
           <div className={ styles.PokemonCards }>
-            { pokemons.map(pokemon => <Pokedex key={ pokemon.id } pokemon={ pokemon } bg={ pokemonBg } />) }
+            { pokemons.map(pokemon => <Pokedex key={ pokemon.id } pokemon={ pokemon } />) }
           </div>
         </div>
         <Pagination

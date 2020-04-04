@@ -10,13 +10,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     height: 400px;
     font-size: $font-xlg;
     font-weight: 700;
     letter-spacing: 3px;
     color: $color-white;
+    text-align: center;
     text-shadow: 3px 3px 0 $color-grey;
+    text-transform: capitalize;
     cursor: default;
   }
 

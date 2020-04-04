@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import withPokemonBg from 'hoc/withPokemonBg'
 import PokedexCamera from 'components/Pokedex/PokedexCamera/PokedexCamera'
 import PokedexDisplay from 'components/Pokedex/PokedexDisplay/PokedexDisplay'
 import PokedexControls from 'components/Pokedex/PokedexControls/PokedexControls'
 import styles from './Pokedex.module.scss'
 
-export default class Pokedex extends Component {
+class Pokedex extends Component {
 
   state = {
     showInfo: false,
@@ -146,3 +147,5 @@ export default class Pokedex extends Component {
     )
   }
 }
+
+export default withPokemonBg(Pokedex)

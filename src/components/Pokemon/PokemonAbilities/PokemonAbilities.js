@@ -1,14 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { getIdFromUrl } from 'constants.js'
 import styles from './PokemonAbilities.module.scss'
 
 const PokemonAbilities = ({ abilities }) => {
-  const getIdFromUrl = url => {
-    const [ pokemonid ] = url.match(/\/[0-9]+\/$/)
-    return pokemonid.replace(/\//g, '') || 0
-  }
-
   return (
     <div className={ styles.Abilities }>
       <h3>Abilities</h3>

@@ -68,7 +68,7 @@ export default class Pokemon extends Component {
   }
 
   render () {
-    const { species, abilities, pokemon, pokemon: { sprites }, loading } = this.state
+    const { species, abilities, pokemon, pokemon: { sprites, types }, loading } = this.state
 
     return (
       <>
@@ -79,7 +79,7 @@ export default class Pokemon extends Component {
               <BackButton link="/pokemons" text="Pokemons" />
               <PokemonImages sprites={ sprites } />
               <PokemonStats pokemon={ pokemon } />
-              <PokemonSpecies species={ species } />
+              <PokemonSpecies species={ species } types={ types } />
               <PokemonAbilities abilities={ abilities } />
             </div>
           </div>

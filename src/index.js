@@ -10,6 +10,7 @@ const Home = lazy(() => import('components/Home/Home'))
 const Pokemons = lazy(() => import('containers/Pokemons/Pokemons'))
 const Pokemon = lazy(() => import('containers/Pokemon/Pokemon'))
 const Types = lazy(() => import('containers/Types/Types'))
+const Type = lazy(() => import('containers/Type/Type'))
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
             <Route path="/pokemons" component={ Pokemons } />
             <Route path="/pokemon/:name" component={ Pokemon } />
             <Route path="/types" component={ Types } />
+            <Route path="/type/:name" component={ Type } />
           </Switch>
         </Suspense>
       </App>

@@ -8,7 +8,16 @@ const HeaderNav = ({ click, isOpen }) => {
   return (
     <nav className={ `${ styles.Nav } ${ isOpen ? styles.Active : '' }` }>
       <ul>
-        { NAV.map(nav => <li key={ nav.id }><Link to={ nav.link } onClick={ click }>{ nav.text }</Link></li>) }
+        { NAV.map(nav => {
+          const { id, link, text } = nav
+          return ( 
+            <li key={ id }>
+              <Link to={ link } onClick={ click }>
+                { text }
+              </Link>
+            </li>
+          )
+        }) }
       </ul>
     </nav>
   )

@@ -11,6 +11,18 @@
   }
 }
 
+.PokemonTypes {
+  text-align: center;
+  padding-bottom: 25px;
+
+  > a {
+    display: inline-block;
+    margin: 0 10px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
 .PokemonDescription {
   padding-bottom: 25px;
   font-size: $font-md;

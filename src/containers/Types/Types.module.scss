@@ -1,0 +1,40 @@
+@import '../../assets/scss/variables';
+
+.Types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px 20px;
+
+  .Type {
+    
+    .TypeImage {
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+      transition: transform $trans-md;
+    }
+
+    > span {
+      display: block;
+      padding-top: 15px;
+      color: $color-black;
+      font-size: $font-lg - 4;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color $trans-md;
+    }
+
+    &:hover {
+
+      .TypeImage {
+        transform: rotateY(180deg);
+      }
+
+      > span {
+        color: $color-red;
+      }
+    }
+  }
+}
