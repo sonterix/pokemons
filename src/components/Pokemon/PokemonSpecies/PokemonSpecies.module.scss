@@ -53,10 +53,13 @@
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: capitalize;
+      cursor: default;
     }
 
-    > a {
+    > a,
+    > p {
       display: inline-block;
+      margin: 0;
       padding: 5px 10px;
       color: $color-white;
       background-color: $color-silver;
@@ -120,6 +123,10 @@
       &.rough-terrain {
         @include bgAndHover($color-yellow);
       }
+    }
+
+    > p {
+      cursor: default;
     }
   }
 }

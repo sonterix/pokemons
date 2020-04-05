@@ -45,12 +45,16 @@ const PokemonSpecies = ({ species, types }) => {
           return (
             <div key={ `${ index }_${ title }_${ name }` } className={ styles.PokemonLink }>
               <span>{ title }</span>
-              <Link to={{ pathname: `/${ title }/${ name }`, state: {
-                  itemId: getIdFromUrl(url)
-                }
-              }} className={ styles[name] }>
-                { name || 'No Info' }
-              </Link>
+              { name 
+                ? <Link to={{ pathname: `/${ title }/${ name }`, state: {
+                    itemId: getIdFromUrl(url)
+                  }
+                }} className={ styles[name] }>
+                  { name }
+                </Link>  
+                : <p>No Info</p> 
+              }
+              
             </div>
           )
         }) }

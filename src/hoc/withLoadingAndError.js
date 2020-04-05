@@ -54,6 +54,10 @@ const withLoadingAndError = WrappedComponent => class extends Component {
     })
   }
 
+  componentDidMount = () => {
+    this.handleHideOverflow()
+  }
+
   render () {
     const { loading, error: { errorStatus, errorMessage } } = this.state
     const newProps = {
