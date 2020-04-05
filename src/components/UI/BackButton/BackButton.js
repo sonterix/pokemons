@@ -1,9 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './BackButton.module.scss'
 
-const BackButton = ({ link, text }) => <Link to={ link } className={ styles.BackButton }>{ text }</Link>
+const BackButton = ({ history, link, text }) => {
+
+  const handleGoBack = event => {
+    if (link === '#') {
+      event.preventDefault()
+      history.goBack()
+    }
+  }
+
+  return <Link to={ link } className={ styles.BackButton } onClick={ handleGoBack }>{ text }</Link>
+}
 
 BackButton.propTypes = {
   link: PropTypes.string,
@@ -11,8 +21,8 @@ BackButton.propTypes = {
 }
 
 BackButton.defaultProps = {
-  link: '/',
+  link: '#',
   text: 'Back'
 }
 
-export default BackButton
+export default withRouter(BackButton)

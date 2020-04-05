@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { API } from 'constants.js'
-import Loading from 'containers/Loading/Loading'
 import Hero from 'components/UI/Hero/Hero'
 import Pokedex from 'containers/Pokemons/Pokedex/Pokedex'
-import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import Pagination from 'components/UI/Pagination/Pagination'
+import withLoadingAndError from 'hoc/withLoadingAndError'
+import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import styles from './Type.module.scss'
 
-export default class Type extends Component {
+class Type extends Component {
 
   state = {
     typeName: '',
@@ -16,8 +16,7 @@ export default class Type extends Component {
     pokemonsOnPage: [],
     prevPage: null,
     currentPage: 0,
-    nextPage: null,
-    loading: true
+    nextPage: null
   }
 
   handleDevideToChunks = array => {
@@ -33,25 +32,32 @@ export default class Type extends Component {
 
   handleGetTypePokemons = async typeId => {
     const { currentPage } = this.state
+    const { hideLoading, showError } = this.props
     const { link, type } = API
 
     try {
       const pokemonsResponse = await fetch(`${ link }${ type }${ typeId }`)
       const pokemonsData = await pokemonsResponse.json()
       const { name: typeName, pokemon } = pokemonsData
-      const pokemonsChunks = this.handleDevideToChunks(pokemon)
-      const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
 
-      this.setState({
-        typeName: typeName,
-        pokemonsAll: pokemon,
-        pokemonsChunks: pokemonsChunks,
-        pokemonsOnPage: pokemonsOnPage,
-        nextPage: pokemonsChunks.length > 0 && 1,
-        loading: false
-      })
+      if (pokemon.length > 0) {
+        const pokemonsChunks = this.handleDevideToChunks(pokemon)
+        const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
+  
+        this.setState({
+          typeName: typeName,
+          pokemonsAll: pokemon,
+          pokemonsChunks: pokemonsChunks,
+          pokemonsOnPage: pokemonsOnPage,
+          nextPage: pokemonsChunks.length > 0 && 1
+        }, hideLoading())
+      } else {
+        hideLoading()
+        showError('No Pokemons of this type yet')
+      }
     } catch (error) {
-      console.error(error)
+      hideLoading()
+      showError('Error with getting current Type Pokemons data')
     }
   }
 
@@ -65,20 +71,20 @@ export default class Type extends Component {
 
       return pokemonsData
     } catch (error) {
-      console.error(error)
+      const { showError } = this.props
+      showError('Error with current Pokemons page')
       return []
     }
   }
 
   handlePagination = async action => {
     const { pokemonsChunks, prevPage, currentPage, nextPage } = this.state
+    const { showLoading, hideLoading } = this.props
 
     switch (action) {
       case ('prev'):
         if (prevPage !== null) {
-          this.setState({
-            loading: true
-          })
+          showLoading()
       
           const prev = prevPage === 0 ? null : prevPage - 1
           const current = currentPage - 1
@@ -89,17 +95,14 @@ export default class Type extends Component {
             pokemonsOnPage: pokemonsOnPage,
             prevPage: prev,
             currentPage: current,
-            nextPage: next,
-            loading: false
-          })
+            nextPage: next
+          }, hideLoading())
         }
         break
 
       case ('next'):
         if (nextPage !== null) {
-          this.setState({
-            loading: true
-          })
+          showLoading()
       
           const prev = prevPage === null ? 0 : prevPage + 1
           const current = currentPage + 1
@@ -110,9 +113,8 @@ export default class Type extends Component {
             pokemonsOnPage: pokemonsOnPage,
             prevPage: prev,
             currentPage: current,
-            nextPage: next,
-            loading: false
-          })
+            nextPage: next
+          }, hideLoading())
         }
         break
         
@@ -127,13 +129,10 @@ export default class Type extends Component {
   }
 
   render() {
-    const { typeName, loading, pokemonsOnPage, prevPage, nextPage } = this.state
+    const { typeName, pokemonsOnPage, prevPage, nextPage } = this.state
 
     return (
       <>
-      { loading
-      ? <Loading />
-      : <>
         <Hero backgroundImg={ pokemonImage } text={ `${ typeName } Pokemons` } />
         <div className="wrapper">
           <div className={ styles.TypePokemonCards }>
@@ -147,8 +146,8 @@ export default class Type extends Component {
           goNext={ () => this.handlePagination('next') }
         />
       </>
-      }
-      </>
     )
   }
 }
+
+export default withLoadingAndError(Type)

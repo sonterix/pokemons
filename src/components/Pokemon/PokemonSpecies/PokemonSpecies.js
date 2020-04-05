@@ -7,8 +7,8 @@ import styles from './PokemonSpecies.module.scss'
 
 const PokemonSpecies = ({ species, types }) => {
   const { flavor_text_entries, color, generation, shape, habitat } = species
-
-  const description = flavor_text_entries.find(element => element.language.name === 'en')
+  
+  const description = flavor_text_entries ? flavor_text_entries.find(element => element.language.name === 'en') : ''
   const { flavor_text } = description
 
   const pokemonData = [

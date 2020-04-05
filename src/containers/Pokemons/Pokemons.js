@@ -45,7 +45,7 @@ class Pokemons extends Component {
     const { hideLoading } = this.props
 
     try {
-      const pokemonNamesResponse = await fetch(`link`)
+      const pokemonNamesResponse = await fetch(link)
       const pokemonNamesData = await pokemonNamesResponse.json()
 
       const { next, previous, results } = pokemonNamesData
@@ -64,7 +64,7 @@ class Pokemons extends Component {
       hideLoading()
 
       const { showError } = this.props
-      showError('Error with getting Pokemons')
+      showError('Error with getting Pokemons data')
     }
   }
 

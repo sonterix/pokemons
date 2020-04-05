@@ -17,27 +17,42 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 25px;
+    padding: 30px;
     background-color: $color-white;
+    border-radius: 3px;
     z-index: 999;
 
     > h3 {
       margin: 0;
-      margin-bottom: 20px;
-      color: $color-black;
+      padding-bottom: 15px;
+      color: $color-red;
       font-size: $font-lg;
-      font-weight: 700;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: capitalize;
+      letter-spacing: 1px;
     }
 
     > span {
-      color: $color-grey;
-      font-size: $font-md;
+      display: inline-block;
+      color: $color-black;
+      font-size: $font-md - 2;
       font-weight: 400;
       text-align: center;
-      text-transform: capitalize;
+    }
+
+    > p {
+      margin: 0;
+      padding-top: 15px;
+      font-size: $font-md - 2;
+      font-weight: 600;
+
+      > a {
+        color: $color-red;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

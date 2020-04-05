@@ -5,19 +5,19 @@ import PokemonStats from 'components/Pokemon/PokemonStats/PokemonStats'
 import PokemonAbilities from 'components/Pokemon/PokemonAbilities/PokemonAbilities'
 import PokemonSpecies from 'components/Pokemon/PokemonSpecies/PokemonSpecies'
 import BackButton from 'components/UI/BackButton/BackButton'
-import Loading from 'containers/Loading/Loading'
+import withLoadingAndError from 'hoc/withLoadingAndError'
 import styles from './Pokemon.module.scss'
 
-export default class Pokemon extends Component {
+class Pokemon extends Component {
 
   state = {
     pokemon: {},
     species: {},
-    abilities: [],
-    loading: true
+    abilities: []
   }
 
   handleGetPokemon = async pokemonId => {
+    const { hideLoading } = this.props
     const { link, pokemon } = API
 
     try {
@@ -42,11 +42,13 @@ export default class Pokemon extends Component {
       this.setState({
         pokemon: pokemonData,
         species: speciesData,
-        abilities: abilitiesData,
-        loading: false
-      })
+        abilities: abilitiesData
+      }, hideLoading())
     } catch (error) {
-      console.error(error)
+      hideLoading()
+
+      const { showError } = this.props
+      showError('Error with getting Pokemon data')
     }
   }
 
@@ -56,35 +58,30 @@ export default class Pokemon extends Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    const { location: { state: { pokemonId } } } = this.props
+    const { showLoading, location: { state: { pokemonId } } } = this.props
     const { location: { state: { pokemonId: prevPokemonId } } } = prevProps
 
     if (pokemonId !== prevPokemonId) {
-      this.setState({
-        loading: true
-      })
+      showLoading()
       this.handleGetPokemon(pokemonId || 0)
     }
   }
 
   render () {
-    const { species, abilities, pokemon, pokemon: { sprites, types }, loading } = this.state
+    const { species, abilities, pokemon, pokemon: { sprites, types } } = this.state
 
     return (
-      <>
-        { loading 
-          ? <Loading /> 
-          : <div className={ `wrapper ${ styles.Pokemon }` }>
-            <div className={ styles.PokemonCard }>
-              <BackButton link="/pokemons" text="Pokemons" />
-              <PokemonImages sprites={ sprites } />
-              <PokemonStats pokemon={ pokemon } />
-              <PokemonSpecies species={ species } types={ types } />
-              <PokemonAbilities abilities={ abilities } />
-            </div>
-          </div>
-        }
-      </>
+      <div className={ `wrapper ${ styles.Pokemon }` }>
+        <div className={ styles.PokemonCard }>
+          <BackButton />
+          <PokemonImages sprites={ sprites } />
+          <PokemonStats pokemon={ pokemon } />
+          <PokemonSpecies species={ species } types={ types } />
+          <PokemonAbilities abilities={ abilities } />
+        </div>
+      </div>
     )
   }
 }
+
+export default withLoadingAndError(Pokemon)
