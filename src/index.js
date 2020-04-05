@@ -11,6 +11,10 @@ const Pokemons = lazy(() => import('containers/Pokemons/Pokemons'))
 const Pokemon = lazy(() => import('containers/Pokemon/Pokemon'))
 const Types = lazy(() => import('containers/Types/Types'))
 const Type = lazy(() => import('containers/Type/Type'))
+const Color = lazy(() => import('containers/Color/Color'))
+const Habitat = lazy(() => import('containers/Habitat/Habitat'))
+const Generation = lazy(() => import('containers/Generation/Generation'))
+const Shape = lazy(() => import('containers/Shape/Shape'))
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +27,10 @@ ReactDOM.render(
             <Route path="/pokemon/:name" component={ Pokemon } />
             <Route path="/types" component={ Types } />
             <Route path="/type/:name" component={ Type } />
+            <Route path="/color/:name" component={ Color } />
+            <Route path="/habitat/:name" component={ Habitat } />
+            <Route path="/generation/:name" component={ Generation } />
+            <Route path="/shape/:name" component={ Shape } />
           </Switch>
         </Suspense>
       </App>

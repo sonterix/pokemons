@@ -12,7 +12,11 @@ export const HOME_NAV = [
 export const API = {
   link: 'https://pokeapi.co/api/v2/',
   pokemon: 'pokemon/',
-  type: 'type/'
+  type: 'type/',
+  color: 'pokemon-color/',
+  habitat: 'pokemon-habitat/',
+  generation: 'generation/',
+  shape: 'pokemon-shape/'
 }
 
 export const getIdFromUrl = url => {

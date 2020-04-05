@@ -46,7 +46,7 @@ const PokemonSpecies = ({ species, types }) => {
             <div key={ `${ index }_${ title }_${ name }` } className={ styles.PokemonLink }>
               <span>{ title }</span>
               <Link to={{ pathname: `/${ title }/${ name }`, state: {
-                  link: url
+                  itemId: getIdFromUrl(url)
                 }
               }} className={ styles[name] }>
                 { name || 'No Info' }

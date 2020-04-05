@@ -5,41 +5,37 @@ import withLoadingAndError from 'hoc/withLoadingAndError'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import PokemonsByChunks from 'containers/PokemonsByChunks/PokemonsByChunks'
 
-class Type extends Component {
+class Generation extends Component {
 
   state = {
     typeName: '',
     pokemons: []
   }
 
-  handleGetTypePokemons = async typeId => {
+  handleGetGenerationPokemons = async generationId => {
     const { hideLoading } = this.props
-    const { link, type } = API
+    const { link, generation } = API
 
     try {
-      const pokemonsResponse = await fetch(`${ link }${ type }${ typeId }`)
+      const pokemonsResponse = await fetch(`${ link }${ generation }${ generationId }`)
       const pokemonsData = await pokemonsResponse.json()
-      const { name: typeName, pokemon } = pokemonsData
-      const pokemnons = pokemon.map(pok => {
-        const { pokemon: currentPokemon } = pok
-        return currentPokemon
-      })
+      const { name: typeName, pokemon_species } = pokemonsData
 
       this.setState ({
         typeName: typeName,
-        pokemons: pokemnons
+        pokemons: pokemon_species
       }, hideLoading())
     } catch (error) {
       const { showError } = this.props
 
       hideLoading()
-      showError('Error with getting current Type Pokemons data')
+      showError('Error with getting current Generation Pokemons data')
     }
   }
 
   componentDidMount = () => {
-    const { location: { state: { typeId } } } = this.props
-    this.handleGetTypePokemons(typeId)
+    const { location: { state: { itemId } } } = this.props
+    this.handleGetGenerationPokemons(itemId)
   }
 
   render() {
@@ -54,4 +50,4 @@ class Type extends Component {
   }
 }
 
-export default withLoadingAndError(Type)
+export default withLoadingAndError(Generation)
