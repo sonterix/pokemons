@@ -1,7 +1,7 @@
 @import '../../../assets/scss/variables';
 
 .Hero {
-  height: 100vh;
+  min-height: 100vh;
   background-color: $color-lightblue;
   background-position: bottom;
   background-size: cover;
@@ -10,6 +10,7 @@
 
   .HeroWrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -19,7 +20,15 @@
     margin-bottom: 50px;
     padding: 0 15px;
     padding-top: 30px ;
-    height: 210px;
+    height: 110px;
     text-align: center;
+
+    @media (min-width: $sm) {
+      height: 180px;
+     }
+
+    @media (min-width: $md) {
+     height: 210px;
+    }
   }
 }

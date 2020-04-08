@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Hero.module.scss'
 
@@ -22,4 +22,4 @@ Hero.defaultProps = {
   backgroundImg: ''
 }
 
-export default Hero
+export default memo(Hero)

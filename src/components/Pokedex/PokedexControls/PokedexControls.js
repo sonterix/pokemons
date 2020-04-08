@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from './PokedexControls.module.scss'
@@ -50,4 +50,4 @@ PokedexControls.defaultProps = {
   switchBackgroundDown: () => {}
 }
 
-export default PokedexControls
+export default memo(PokedexControls)

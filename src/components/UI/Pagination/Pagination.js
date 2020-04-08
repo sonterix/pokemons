@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Pagination.module.scss'
 
@@ -25,4 +25,4 @@ Pagination.defaultProps = {
   goNext: () => {}
 }
 
-export default Pagination
+export default memo(Pagination)

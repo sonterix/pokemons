@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import withPokemonBg from 'hoc/withPokemonBg'
 import PokedexCamera from 'components/Pokedex/PokedexCamera/PokedexCamera'
@@ -6,7 +6,7 @@ import PokedexDisplay from 'components/Pokedex/PokedexDisplay/PokedexDisplay'
 import PokedexControls from 'components/Pokedex/PokedexControls/PokedexControls'
 import styles from './Pokedex.module.scss'
 
-class Pokedex extends Component {
+class Pokedex extends PureComponent {
 
   state = {
     showInfo: false,

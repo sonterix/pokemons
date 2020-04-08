@@ -17,8 +17,8 @@
   .Pokeball {
     position: relative;
     margin: 40px;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     animation: loading 2.5s infinite;
     cursor: pointer;
@@ -77,6 +77,11 @@
       height: 100%;
       border: 8px solid $color-grey;
       border-radius: 50%;
+    }
+
+    @media (min-width: $sm) {
+      width: 300px;
+      height: 300px;
     }
   }
 }

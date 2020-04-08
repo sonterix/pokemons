@@ -34,8 +34,16 @@ class Habitat extends Component {
   }
 
   componentDidMount = () => {
-    const { location: { state: { itemId } } } = this.props
-    this.handleGetHabitatPokemons(itemId)
+    const { location } = this.props
+
+    try {
+      const { state: { itemId } } = location
+      this.handleGetHabitatPokemons(itemId || 0)
+    } catch(error) {
+      const { hideLoading, showError } = this.props
+      hideLoading()
+      showError('Error with getting Habitat data')
+    }
   }
 
   render() {

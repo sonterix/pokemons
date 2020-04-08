@@ -2,9 +2,13 @@
 
 .Pokedex {
   margin: 0 auto;
-  max-width: 350px;
+  max-width: 280px;
   width: 100%;
   background-color: $color-red;
   border-radius: 10px;
   overflow: hidden;
+
+  @media (min-width: $sm) {
+    max-width: 350px;
+  }
 }

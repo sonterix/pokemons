@@ -1,12 +1,14 @@
 export const NAV = [
   { id: 1, link: '/', text: 'Home' },
   { id: 2, link: '/pokemons', text: 'Pokemons' },
-  { id: 3, link: '/types', text: 'Types' }
+  { id: 3, link: '/types', text: 'Types' },
+  { id: 4, link: '/contact', text: 'Contact us' }
 ]
 
 export const HOME_NAV = [
   { id: 1, link: '/pokemons', text: 'Pokemons', color: '#e3360e' },
-  { id: 2, link: '/types', text: 'Types', color: '#653e97' }
+  { id: 2, link: '/types', text: 'Types', color: '#653e97' },
+  { id: 3, link: '/contact', text: 'Contact', color: '#ee6b2f' }
 ]
 
 export const API = {
@@ -26,4 +28,12 @@ export const getIdFromUrl = url => {
   } catch (error) {
     return 0
   }
+}
+
+export const showOverflow = () => {
+  document.body.style.overflow = 'visible';
+}
+
+export const hideOverflow = () => {
+  document.body.style.overflow = 'hidden';
 }

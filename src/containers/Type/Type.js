@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { API } from 'constants.js'
 import Hero from 'components/UI/Hero/Hero'
+import NoFound from 'components/UI/NotFound/NotFound'
 import withLoadingAndError from 'hoc/withLoadingAndError'
 import pokemonImage from 'assets/images/pokemon-page-bg.jpg'
 import PokemonsByChunks from 'containers/PokemonsByChunks/PokemonsByChunks'
@@ -38,8 +39,16 @@ class Type extends Component {
   }
 
   componentDidMount = () => {
-    const { location: { state: { typeId } } } = this.props
-    this.handleGetTypePokemons(typeId)
+    const { location } = this.props
+
+    try {
+      const { state: { typeId } } = location
+      this.handleGetTypePokemons(typeId || 0)
+    } catch(error) {
+      const { hideLoading, showError } = this.props
+      hideLoading()
+      showError('Error with getting Type data')
+    }
   }
 
   render() {
@@ -48,7 +57,7 @@ class Type extends Component {
     return (
       <>
         <Hero backgroundImg={ pokemonImage } text={ `${ typeName } Pokemons` } />
-        { pokemons.length > 0 && <PokemonsByChunks pokemons={ pokemons } /> }
+        { pokemons.length > 0 ? <PokemonsByChunks pokemons={ pokemons } /> : <NoFound /> }
       </>
     )
   }

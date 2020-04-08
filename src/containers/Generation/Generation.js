@@ -34,8 +34,16 @@ class Generation extends Component {
   }
 
   componentDidMount = () => {
-    const { location: { state: { itemId } } } = this.props
-    this.handleGetGenerationPokemons(itemId)
+    const { location } = this.props
+
+    try {
+      const { state: { itemId } } = location
+      this.handleGetGenerationPokemons(itemId || 0)
+    } catch(error) {
+      const { hideLoading, showError } = this.props
+      hideLoading()
+      showError('Error with getting Generation data')
+    }
   }
 
   render() {

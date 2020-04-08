@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Loading from 'containers/Loading/Loading'
 import ErrorMessage from 'components/UI/ErrorMessage/ErrorMessage'
+import { showOverflow, hideOverflow } from 'constants.js'
 
-const withLoadingAndError = WrappedComponent => class extends Component {
+const withLoadingAndError = WrappedComponent => class extends PureComponent {
 
   state = {
     loading: true,
@@ -12,30 +13,22 @@ const withLoadingAndError = WrappedComponent => class extends Component {
     }
   }
 
-  handleShowOverflow = () => {
-    document.body.style.overflow = 'visible';
-  }
-
-  handleHideOverflow = () => {
-    document.body.style.overflow = 'hidden';
-  }
-
   handleShowLoading = () => {
-    this.handleHideOverflow()
+    hideOverflow()
     this.setState({ 
       loading: true
     })
   }
 
   handleHideLoading = () => {
-    this.handleShowOverflow()
+    showOverflow()
     this.setState({ 
       loading: false
     })
   }
 
   handleShowError = (text = '') => {
-    this.handleHideOverflow()
+    hideOverflow()
     this.setState({ 
       error: {
         errorStatus: true,
@@ -45,7 +38,7 @@ const withLoadingAndError = WrappedComponent => class extends Component {
   }
 
   handleHideError = () => {
-    this.handleShowOverflow()
+    showOverflow()
     this.setState({ 
       error: {
         errorStatus: false,
@@ -55,7 +48,7 @@ const withLoadingAndError = WrappedComponent => class extends Component {
   }
 
   componentDidMount = () => {
-    this.handleHideOverflow()
+    hideOverflow()
   }
 
   render () {

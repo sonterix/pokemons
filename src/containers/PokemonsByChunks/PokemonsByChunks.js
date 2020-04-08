@@ -49,23 +49,18 @@ class PokemonsByChunks extends Component {
     const { currentPage } = this.state
     const { hideLoading, showError } = this.props
 
-    if (pokemons.length > 0) {
-      try {
-        const pokemonsChunks = this.handleDevideToChunks(pokemons)
-        const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
-  
-        this.setState({
-          pokemonsChunks: pokemonsChunks,
-          pokemonsOnPage: pokemonsOnPage,
-          nextPage: pokemonsChunks.length > 0 && 1
-        }, hideLoading())
-      } catch (error) {
-        hideLoading()
-        showError('Error with getting current Type Pokemons data')
-      }
-    } else {
+    try {
+      const pokemonsChunks = this.handleDevideToChunks(pokemons)
+      const pokemonsOnPage = await this.handleGetCurrentPokemonsChunk(pokemonsChunks, currentPage)
+
+      this.setState({
+        pokemonsChunks: pokemonsChunks,
+        pokemonsOnPage: pokemonsOnPage,
+        nextPage: pokemonsChunks.length > 0 && 1
+      }, hideLoading())
+    } catch (error) {
       hideLoading()
-      showError('No Pokemons found')
+      showError('Error with getting current Type Pokemons data')
     }
   }
 

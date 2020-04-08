@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from './PokedexCamera.module.scss'
 
 const PokedexCamera = () => {
@@ -14,4 +14,4 @@ const PokedexCamera = () => {
   )
 }
 
-export default PokedexCamera
+export default memo(PokedexCamera)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { API } from 'constants.js'
 import PokemonImages from 'components/Pokemon/PokemonImages/PokemonImages'
 import PokemonStats from 'components/Pokemon/PokemonStats/PokemonStats'
@@ -8,7 +8,7 @@ import BackButton from 'components/UI/BackButton/BackButton'
 import withLoadingAndError from 'hoc/withLoadingAndError'
 import styles from './Pokemon.module.scss'
 
-class Pokemon extends Component {
+class Pokemon extends PureComponent {
 
   state = {
     pokemon: {},
@@ -53,17 +53,32 @@ class Pokemon extends Component {
   }
 
   componentDidMount = () => {
-    const { location: { state: { pokemonId } } } = this.props
-    this.handleGetPokemon(pokemonId || 0)
+    const { location } = this.props
+
+    try {
+      const { state: { pokemonId } } = location
+      this.handleGetPokemon(pokemonId || 0)
+    } catch(error) {
+      const { hideLoading, showError } = this.props
+      hideLoading()
+      showError('Error with getting Pokemon data')
+    }
   }
 
-  componentDidUpdate = (prevProps) => {
-    const { showLoading, location: { state: { pokemonId } } } = this.props
-    const { location: { state: { pokemonId: prevPokemonId } } } = prevProps
+  componentDidUpdate = prevProps => {
+    const { showLoading, location } = this.props
 
-    if (pokemonId !== prevPokemonId) {
-      showLoading()
-      this.handleGetPokemon(pokemonId || 0)
+    try {
+      const { state: { pokemonId } } = location
+      const { location: { state: { pokemonId: prevPokemonId } } } = prevProps
+
+      if (pokemonId !== prevPokemonId) {
+        showLoading()
+        this.handleGetPokemon(pokemonId || 0)
+      }
+    } catch(error) {
+      const { hideLoading } = this.props
+      hideLoading()
     }
   }
 

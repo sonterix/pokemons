@@ -34,8 +34,16 @@ class Shape extends Component {
   }
 
   componentDidMount = () => {
-    const { location: { state: { itemId } } } = this.props
-    this.handleGetShapePokemons(itemId)
+    const { location } = this.props
+
+    try {
+      const { state: { itemId } } = location
+      this.handleGetShapePokemons(itemId || 0)
+    } catch(error) {
+      const { hideLoading, showError } = this.props
+      hideLoading()
+      showError('Error with getting Shape data')
+    }
   }
 
   render() {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import styles from './PokedexDisplay.module.scss'
 
@@ -66,4 +66,4 @@ PokedexDisplay.defaultProps = {
   background: '',
 }
 
-export default PokedexDisplay
+export default memo(PokedexDisplay)

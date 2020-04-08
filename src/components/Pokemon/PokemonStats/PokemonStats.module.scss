@@ -2,12 +2,13 @@
 
 .PokemonStats {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
   margin: 0 auto;
   margin-bottom: 25px;
   padding: 10px;
-  max-width: 80%;
+  max-width: 100%;
   background-color: $color-red;
   border-radius: 10px;
 
@@ -29,5 +30,10 @@
       text-transform: capitalize;
       letter-spacing: 1px;
     }
+  }
+
+  @media (min-width: $sm) {
+    flex-direction: row;
+    max-width: 80%;
   }
 }

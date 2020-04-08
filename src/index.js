@@ -15,6 +15,8 @@ const Color = lazy(() => import('containers/Color/Color'))
 const Habitat = lazy(() => import('containers/Habitat/Habitat'))
 const Generation = lazy(() => import('containers/Generation/Generation'))
 const Shape = lazy(() => import('containers/Shape/Shape'))
+const Contact = lazy(() => import('containers/Contact/Contact'))
+const Page404 = lazy(() => import('components/Page404/Page404'))
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,15 +24,17 @@ ReactDOM.render(
       <App>
         <Suspense fallback={ <Loading /> }>
           <Switch>
-            <Route path="/" component={ Home } exact />
-            <Route path="/pokemons" component={ Pokemons } />
-            <Route path="/pokemon/:name" component={ Pokemon } />
-            <Route path="/types" component={ Types } />
-            <Route path="/type/:name" component={ Type } />
-            <Route path="/color/:name" component={ Color } />
-            <Route path="/habitat/:name" component={ Habitat } />
-            <Route path="/generation/:name" component={ Generation } />
-            <Route path="/shape/:name" component={ Shape } />
+            <Route path="/" exact component={ Home } />
+            <Route path="/pokemons" exact component={ Pokemons } />
+            <Route path="/pokemon/:name" exact component={ Pokemon } />
+            <Route path="/types" exact component={ Types } />
+            <Route path="/type/:name" exact component={ Type } />
+            <Route path="/color/:name" exact component={ Color } />
+            <Route path="/habitat/:name" exact component={ Habitat } />
+            <Route path="/generation/:name" exact component={ Generation } />
+            <Route path="/shape/:name" exact component={ Shape } />
+            <Route path="/contact" exact component={ Contact } />
+            <Route path="*" component={ Page404 } />
           </Switch>
         </Suspense>
       </App>

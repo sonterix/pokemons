@@ -7,6 +7,28 @@
 
   .FooterWrapper {
     text-align: center;
-    color: $color-white;
+    
+    .FooterLogo {
+      max-height: 65px;
+    }
+
+    .Copyright {
+      padding-top: 15px;
+      font-size: $font-md - 2;
+      font-weight: 400;
+      color: $color-white;
+
+      > a {
+        padding-left: 5px;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        transition: color $trans-md;
+
+        &:hover {
+          color: $color-red;
+        }
+      }
+    }
   }
 }
