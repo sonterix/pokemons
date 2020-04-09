@@ -22,7 +22,7 @@
       border: none;
       border-radius: 10px;
       box-shadow: 0 2px 0 0 darken($color-green, 20);
-      transition: all $trans-sm;
+      transition: all $trans-md;
 
       &:hover {
         background-color: $color-green - 10;
@@ -51,7 +51,7 @@
       border: none;
       border-radius: 15px;
       box-shadow: 0 3px 0 0 darken($color-white, 20);
-      transition: all $trans-sm;
+      transition: all $trans-md;
       cursor: pointer;
   
       &:hover {
@@ -92,7 +92,7 @@
           height: 100%;
           background-color: $color-lightgrey;
           clip-path: polygon(50% 30%, 35% 65%, 65% 65%);
-          transition: background-color $trans-sm;
+          transition: background-color $trans-md;
         }
 
         &:hover {

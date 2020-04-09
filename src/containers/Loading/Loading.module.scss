@@ -12,6 +12,7 @@
   height: 100%;
   background-image: url($bg-main-image);
   background-color: $color-white;
+  transition: background-color $trans-md;
   z-index: 999;
 
   .Pokeball {
@@ -83,5 +84,13 @@
       width: 300px;
       height: 300px;
     }
+  }
+}
+
+:global(.moon) {
+
+  .Loading {
+    background-image: url($bg-main-image-dark);
+    background-color: $color-darkgrey;
   }
 }

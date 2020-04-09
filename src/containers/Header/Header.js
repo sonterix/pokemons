@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import HeaderNav from 'components/HeaderNav/HeaderNav'
+import ThemeSwitch from 'containers/ThemeSwitch/ThemeSwitch'
 import HamburgerIcon from 'components/UI/HamburgerIcon/HamburgerIcon'
+import HeaderNav from 'components/HeaderNav/HeaderNav'
 import styles from './Header.module.scss'
 
 export default class Header extends Component {
@@ -37,6 +38,7 @@ export default class Header extends Component {
       <header className={ showHerader ? styles.Active : '' }>
         <div className={ `${ styles.FloatingHeader } ${ navOpen ? styles.Active : '' }` }>
           <HamburgerIcon click={ this.handleNavToggle } isOpen={ navOpen } />
+          <ThemeSwitch />
         </div>
         <HeaderNav click={ this.handleNavClose } isOpen={ navOpen } />
       </header>

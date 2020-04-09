@@ -16,6 +16,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     color: $color-black;
+    transition: color $trans-md;
 
     @media (min-width: $sm) {
       padding-top: 0;
@@ -29,6 +30,7 @@
     font-size: $font-md;
     font-weight: 700;
     color: $color-black;
+    transition: color $trans-md;
 
     @media (min-width: $sm) {
       font-size: $font-lg;
@@ -42,6 +44,17 @@
 
     @media (min-width: $sm) {
       max-height: 500px;
+    }
+  }
+}
+
+:global(.moon) {
+
+  .Page404 {
+    
+    > h1, 
+    > h3 {
+      color: $color-white;
     }
   }
 }

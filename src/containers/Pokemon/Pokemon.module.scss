@@ -1,6 +1,7 @@
 @import '../../assets/scss/variables';
 
 .Pokemon {
+  min-height: calc(100vh - 218px);
 
   .PokemonCard {
     margin: 25px auto;

@@ -51,3 +51,10 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+:global(.moon) {
+
+  .Types .Type > span {
+    color: $color-white;
+  }
+}

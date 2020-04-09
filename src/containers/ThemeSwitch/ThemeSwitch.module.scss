@@ -1,0 +1,54 @@
+@import '../../assets/scss/variables';
+
+.ThemeSwitch {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 50px;
+  z-index: 905;
+  overflow: hidden;
+  cursor: pointer;
+
+  .Sun,
+  .Moon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    transition: transform $trans-md;
+
+    > svg {
+      width: 75%;
+      height: 75%;
+      transition: fill $trans-md;
+    }
+
+    &.Active {
+      transform: translateX(0);
+    }
+
+    &:hover > svg {
+      fill: $color-red;
+    }
+  }
+
+  .Sun {
+    transform: translateX(-100%);
+
+    > svg {
+      fill: $color-white;
+    }
+  }
+
+  .Moon {
+    transform: translateX(100%);
+
+    > svg {
+      fill: $color-lightgrey;
+    }
+  }
+}

@@ -4,6 +4,8 @@
 body {
   margin: 0;
   background-image: url($bg-main-image);
+  background-color: $color-white;
+  transition: background-color $trans-md;
 
   * {
     font-family: 'Montserrat', sans-serif;
@@ -27,6 +29,11 @@ body {
   img {
     max-width: 100%;
   }
+
+  &.moon {
+    background-image: url($bg-main-image-dark);
+    background-color: $color-darkgrey;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -41,7 +48,18 @@ body {
   background-color: $color-grey;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
+  background-color: $color-red;
+}
+
+.moon::-webkit-scrollbar-track {
+  background-color: $color-lightgrey;
+}
+
+.moon::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+}
+
+.moon::-webkit-scrollbar-thumb:hover {
   background-color: $color-red;
 }

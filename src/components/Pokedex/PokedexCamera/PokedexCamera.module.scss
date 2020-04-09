@@ -23,7 +23,7 @@
     border: 5px solid $pokedex-lightblue;
     border-radius: 50%;
     background-color: $pokedex-blue;
-    transition: background-color $trans-sm;
+    transition: background-color $trans-md;
     z-index: 3;
 
     &::before {
@@ -54,7 +54,7 @@
       height: 8px;
       margin: 5px 3px;
       border-radius: 50%;
-      transition: background-color $trans-sm;
+      transition: background-color $trans-md;
 
       &:nth-child(1) {
         background-color: $pokedex-red;

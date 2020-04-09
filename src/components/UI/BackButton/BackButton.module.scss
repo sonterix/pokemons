@@ -10,6 +10,7 @@
   color: $color-grey;
   font-size: $font-md - 2;
   font-weight: 400;
+  transition: color $trans-md;
 
   &:before {
     content: '';
@@ -21,10 +22,22 @@
     border-top-color: $color-grey;
     border-left-color: $color-grey;
     transform: rotate(-45deg);
-    transition: transform $trans-sm;
+    transition: transform $trans-md, border-top-color $trans-md, border-left-color $trans-md;
   }
 
   &:hover::before {
     transform: rotate(-45deg) translateX(-2px) translateY(-2px);
+  }
+}
+
+:global(.moon) {
+
+  .BackButton {
+    color: $color-lightgrey;
+
+    &::before {
+      border-top-color: $color-lightgrey;
+      border-left-color: $color-lightgrey;
+    }
   }
 }

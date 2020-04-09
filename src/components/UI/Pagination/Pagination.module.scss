@@ -14,7 +14,7 @@
     width: 100%;
     height: 50px;
     background-color: rgba($color-grey, 0.1);
-    transition: background-color $trans-sm;
+    transition: background-color $trans-md;
     
     &.PaginationPrev::before,
     &.PaginationPrev::after {
@@ -54,5 +54,12 @@
         background-color: rgba($color-grey, 0.4);
       }
     }
+  }
+}
+
+:global(.moon) {
+
+  .Pagination > button {
+    background-color: rgba($color-white, 0.7);
   }
 }

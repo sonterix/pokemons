@@ -37,3 +37,11 @@ export const showOverflow = () => {
 export const hideOverflow = () => {
   document.body.style.overflow = 'hidden';
 }
+
+export const setLS = (name, value) => {
+  localStorage.setItem(name, value);
+} 
+
+export const getLS = name => {
+  return localStorage.getItem(name);
+} 

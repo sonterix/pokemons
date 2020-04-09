@@ -6,20 +6,20 @@ import Footer from 'components/Footer/Footer'
 class App extends Component {
 
   state = {
-    homePage: false
+    homePage: true
   }
 
   handleHomePageCheck = () => {
     const { location: { pathname } } = this.props
     const { homePage } = this.state
 
-    if (pathname === '/' && homePage) {
-      this.setState({
-        homePage: false
-      })
-    } else if (pathname !== '/' && !homePage) {
+    if (pathname === '/' && !homePage) {
       this.setState({
         homePage: true
+      })
+    } else if (pathname !== '/' && homePage) {
+      this.setState({
+        homePage: false
       })
     }
   }
@@ -40,9 +40,9 @@ class App extends Component {
     
     return (
       <>
-        { homePage && <Header /> }
+        { !homePage && <Header /> }
         { children }
-        { homePage && <Footer /> }
+        { !homePage && <Footer /> }
       </>
     )
   }
