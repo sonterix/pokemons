@@ -1,40 +1,14 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Sun from 'components/UI/Icons/Sun'
 import Moon from 'components/UI/Icons/Moon'
 import { setLS, getLS } from 'constants.js'
 import styles from './ThemeSwitch.module.scss'
 
-export default class ThemeSwitch extends Component {
+export default class ThemeSwitch extends PureComponent {
 
-  constructor (props) {
-    super(props)
-
-    this.theme = getLS('theme')
-
-    switch (this.theme) {
-      case 'moon':
-        this.state = {
-          sun: false,
-          moon: true
-        }
-        this.handleSwitchToMoon()
-        break
-      
-      case 'sun':
-        this.state = {
-          sun: true,
-          moon: false
-        }
-        this.handleSwitchToSun()
-        break
-      
-      default:
-        this.state = {
-          sun: true,
-          moon: false
-        }
-        break
-    }
+  state = {
+    sun: true,
+    moon: false
   }
 
   handleSwitchToMoon = () => {
@@ -55,6 +29,21 @@ export default class ThemeSwitch extends Component {
       sun: true,
       moon: false
     })
+  }
+
+  componentDidMount = () => {
+    const theme = getLS('theme')
+
+    switch (theme) {
+      case 'moon':
+        this.handleSwitchToMoon()
+        break
+      
+      case 'sun':
+      default:
+        this.handleSwitchToSun()
+        break
+    }
   }
 
   render() {
