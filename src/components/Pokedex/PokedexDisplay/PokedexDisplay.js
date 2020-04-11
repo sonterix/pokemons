@@ -34,7 +34,7 @@ const PokedexDisplay = ({ info, name, types, abilities, image, background }) => 
         </div>
       :
         <div className={ styles.PokedexImage } style={{ backgroundImage: `url(${ background })` }}>
-          <img src={ image } alt={ name } />
+          { image ? <img src={ image } alt={ name } /> : <span>?</span> }
         </div> }
       <div className={ styles.DisplayIndicator }></div>
       <div className={ styles.DisplayDynamic }>

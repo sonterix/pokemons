@@ -107,6 +107,12 @@
       pointer-events: none;
     }
 
+    > span {
+      font-size: $font-xlg;
+      font-weight: 600;
+      color: $color-white;
+    }
+
     @media (min-width: $sm) {
       min-height: 150px;
     }
