@@ -17,6 +17,32 @@ header {
     transform: translateX(-100%);
     transition: transform $trans-md, background-color $trans-md;
     z-index: 905;
+
+    .Bottom {
+
+      > * {
+        margin-bottom: 10px;
+      }
+
+      .SavedPokemons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform $trans-md;
+
+        > svg {
+          width: 75%;
+          height: 75%;
+          fill: $color-white;
+          transition: fill $trans-md;
+        }
+
+        &:hover > svg,
+        &.Active > svg {
+          fill: $color-red;
+        }
+      }
+    }
   }
 
   &.Active {
@@ -31,5 +57,17 @@ header {
 
   header .FloatingHeader {
     background-color: $color-black;
+
+    .Bottom .SavedPokemons {
+
+      > svg {
+        fill: $color-lightgrey;
+      }
+
+      &:hover > svg,
+      &.Active > svg {
+        fill: $color-red;
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Loading from 'containers/Loading/Loading'
+import Loading from 'containers/UI/Loading/Loading'
 import ErrorMessage from 'components/UI/ErrorMessage/ErrorMessage'
 import { showOverflow, hideOverflow } from 'constants.js'
 

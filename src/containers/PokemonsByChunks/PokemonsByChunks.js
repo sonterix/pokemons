@@ -56,7 +56,7 @@ class PokemonsByChunks extends Component {
       this.setState({
         pokemonsChunks: pokemonsChunks,
         pokemonsOnPage: pokemonsOnPage,
-        nextPage: pokemonsChunks.length > 0 && 1
+        nextPage: pokemonsChunks.length > 1 ? 1 : null
       }, hideLoading())
     } catch (error) {
       hideLoading()

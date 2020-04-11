@@ -45,3 +45,7 @@ export const setLS = (name, value) => {
 export const getLS = name => {
   return localStorage.getItem(name);
 } 
+
+export const removeLS = name => {
+  localStorage.removeItem(name)
+} 

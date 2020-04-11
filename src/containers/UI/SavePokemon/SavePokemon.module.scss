@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables';
+
+.SavePokemon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+
+  &.Save {
+    background-color: $color-green;
+
+    &:hover {
+      background-color: darken($color-green, 5);
+    }
+  }
+
+  &.Remove {
+    background-color: $color-red;
+
+    &:hover {
+      background-color: darken($color-red, 5);
+    }
+  }
+}

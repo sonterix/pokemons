@@ -1,0 +1,23 @@
+@import '../../assets/scss/variables';
+
+.SavedPokemonsActions {
+  padding-top: 25px;
+  padding-bottom: 5px;
+  text-align: right;
+
+  > button {
+    display: inline-block;
+    background-color: $color-red;
+    border-radius: 5px;
+
+    &:disabled {
+      background-color: darken($color-red, 10);
+      cursor: not-allowed;
+    }
+  }
+
+  > hr {
+    margin: 10px 0;
+    border: 1px solid $color-lightgrey;
+  }
+}

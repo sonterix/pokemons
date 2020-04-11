@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { API } from 'constants.js'
+import SavePokemon from 'containers/UI/SavePokemon/SavePokemon'
 import PokemonImages from 'components/Pokemon/PokemonImages/PokemonImages'
 import PokemonStats from 'components/Pokemon/PokemonStats/PokemonStats'
 import PokemonAbilities from 'components/Pokemon/PokemonAbilities/PokemonAbilities'
@@ -83,12 +84,13 @@ class Pokemon extends PureComponent {
   }
 
   render () {
-    const { species, abilities, pokemon, pokemon: { sprites, types } } = this.state
+    const { species, abilities, pokemon, pokemon: { id, sprites, types } } = this.state
 
     return (
       <div className={ `wrapper ${ styles.Pokemon }` }>
+        <BackButton />
         <div className={ styles.PokemonCard }>
-          <BackButton />
+          <SavePokemon pokemonId={ id } />
           <PokemonImages sprites={ sprites } />
           <PokemonStats pokemon={ pokemon } />
           <PokemonSpecies species={ species } types={ types } />

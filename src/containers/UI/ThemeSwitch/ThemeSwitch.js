@@ -6,18 +6,31 @@ import styles from './ThemeSwitch.module.scss'
 
 export default class ThemeSwitch extends PureComponent {
 
-  state = {
-    sun: true,
-    moon: false
+  constructor (props) {
+    super(props)
+
+    const theme = getLS('theme')
+    
+    switch (theme) {
+      case 'moon':
+        this.state = { theme: 'moon' }
+        document.body.classList.add('moon')
+        break
+      
+      case 'sun':
+      default:
+        this.state = { theme: 'sun' }
+        break
+    }
   }
+
 
   handleSwitchToMoon = () => {
     document.body.classList.add('moon')
     setLS('theme', 'moon')
 
     this.setState({
-      sun: false,
-      moon: true
+      theme: 'moon'
     })
   }
 
@@ -26,35 +39,19 @@ export default class ThemeSwitch extends PureComponent {
     setLS('theme', 'sun')
 
     this.setState({
-      sun: true,
-      moon: false
+      theme: 'sun'
     })
   }
 
-  componentDidMount = () => {
-    const theme = getLS('theme')
-
-    switch (theme) {
-      case 'moon':
-        this.handleSwitchToMoon()
-        break
-      
-      case 'sun':
-      default:
-        this.handleSwitchToSun()
-        break
-    }
-  }
-
   render() {
-    const { sun, moon } = this.state
+    const { theme } = this.state
 
     return (
       <div className={ styles.ThemeSwitch }>
-        <div className={ `${ styles.Sun } ${ sun && styles.Active }` } onClick={ this.handleSwitchToMoon }>
+        <div className={ `${ styles.Sun } ${ theme === 'sun' && styles.Active }` } onClick={ this.handleSwitchToMoon }>
           <Sun />
         </div>
-        <div className={ `${ styles.Moon } ${ moon && styles.Active }` } onClick={ this.handleSwitchToSun }>
+        <div className={ `${ styles.Moon } ${ theme === 'moon' && styles.Active }` } onClick={ this.handleSwitchToSun }>
           <Moon />
         </div>
       </div>

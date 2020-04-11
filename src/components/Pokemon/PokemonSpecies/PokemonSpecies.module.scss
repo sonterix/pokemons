@@ -6,8 +6,8 @@
   transition: background-color $trans-md, border-color $trans-md;
 
   &:hover {
-    background-color: darken($color, 5);
-    border-color: darken($color, 5);
+    background-color: darken($color, 10);
+    border-color: darken($color, 10);
   }
 }
 
@@ -68,6 +68,7 @@
       font-size: $font-sm;
       font-weight: 600;
       text-transform: uppercase;
+      transition: background-color $trans-md;
   
       &.black,
       &.urban {
@@ -123,6 +124,10 @@
       &.rough-terrain {
         @include bgAndHover($color-yellow);
       }
+    }
+
+    > a:hover {
+      background-color: darken($color-silver, 10);
     }
 
     > p {

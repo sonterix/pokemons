@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import App from './App';
-import Loading from 'containers/Loading/Loading'
+import Loading from 'containers/UI/Loading/Loading'
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 
@@ -16,6 +16,7 @@ const Habitat = lazy(() => import('containers/Habitat/Habitat'))
 const Generation = lazy(() => import('containers/Generation/Generation'))
 const Shape = lazy(() => import('containers/Shape/Shape'))
 const Contact = lazy(() => import('containers/Contact/Contact'))
+const SavedPokemons = lazy(() => import('containers/SavedPokemons/SavedPokemons'))
 const Page404 = lazy(() => import('components/Page404/Page404'))
 
 ReactDOM.render(
@@ -34,6 +35,7 @@ ReactDOM.render(
             <Route path="/generation/:name" exact component={ Generation } />
             <Route path="/shape/:name" exact component={ Shape } />
             <Route path="/contact" exact component={ Contact } />
+            <Route path="/saved-pokemons" exact component={ SavedPokemons } />
             <Route path="*" component={ Page404 } />
           </Switch>
         </Suspense>
