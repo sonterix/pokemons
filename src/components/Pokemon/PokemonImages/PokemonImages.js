@@ -7,12 +7,14 @@ const PokemonImages = ({ sprites }) => {
 
   return (
     <div className={ styles.PokemonImages }>
-      <div className={ styles.ImageItem }>
-        <img src={ front_default } alt="pokemon" />
-        { front_female && <p className={ styles.PokemonMale }>Male</p> }
-      </div>
-      { front_female && 
-        <div className={ styles.ImageItem }>
+      { front_default 
+        && <div className={ styles.ImageItem }>
+          <img src={ front_default } alt="pokemon" />
+          { front_female && <p className={ styles.PokemonMale }>Male</p> }
+        </div>
+      }
+      { front_female
+        && <div className={ styles.ImageItem }>
           <img src={ front_female } alt="pokemon-female" />
           <p className={ styles.PokemonFemale }>Female</p>
         </div>
